@@ -1,18 +1,28 @@
 function solve(a: number[]): number {
     let output: number[] = [];
+    let isSum: boolean = true;
 
-    while(a.length > 1){
+    while (a.length > 1) {
         output = [];
         for (let i = 0; i < a.length; i = i + 2) {
-            if(a.length < i+1){
+            if (a.length == 1) {
                 output.push(a[i]);
-            }else{
-                output.push(a[i]+a[i+1]);
+            } else {
+                let v: number = 0;
+                if (a.length >= i + 2) {
+                    if (isSum) {
+                        v = a[i] + a[i + 1]
+                    } else {
+                        v = a[i] * a[i + 1]
+                    }
+                }
+                output.push(v);
             }
         }
+        isSum = !isSum;
         a = output;
     }
-    
+
     return output[0];
 }
 
